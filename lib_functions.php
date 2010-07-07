@@ -2,11 +2,29 @@
 
 
 ### plugin removal
-if( isset($_REQUEST['cfdeleteall']) ) {
+if( isset($_POST['cfdeleteall']) && !function_exists("wp_get_current_user") ) {
 
-	$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name LIKE 'cforms%'");
-	$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformssubmissions");
-	$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformsdata");
+	### supporting WP2.6 wp-load & custom wp-content / plugin dir
+	if ( file_exists('abspath.php') )
+		include_once('abspath.php');
+	else
+		$abspath = dirname(__FILE__) . '/../../../';
+
+	if ( file_exists( $abspath . 'wp-load.php') )
+		require_once( $abspath . 'wp-load.php' );
+	else
+		require_once( $abspath . 'wp-config.php' );
+
+	require (ABSPATH . WPINC . '/pluggable.php');
+
+	global $current_user,$user_ID;
+	$u = get_currentuserinfo();
+
+	if( is_user_logged_in() && in_array('administrator',$current_user->roles) ) {
+		$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name LIKE 'cforms%'");
+		$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformssubmissions");
+		$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformsdata");
+	}
 
     ### deactivate cforms plugin
 	$curPlugs = get_settings('active_plugins');
@@ -170,7 +188,7 @@ function cforms_init() {
 
 	### save ABSPATH for ajax routines
 	if ( defined('ABSPATH') && ($fhandle = fopen(dirname(__FILE__).$sep.'abspath.php', "w")) ) {
-	    fwrite($fhandle, "<?php \$abspath = '". addslashes(ABSPATH) ."'; ?>\n");
+	    fwrite($fhandle, "<?php \$abspath = '". addslashes(ABSPATH) . "'; ?>\n");
 	    fclose($fhandle);
 	}
 
@@ -179,7 +197,7 @@ function cforms_init() {
 
 
 ### check for abspath.php
-function abspath_check() {
+function abspath_check(){
 	global $cformsSettings;
 	if ( !file_exists( dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].'abspath.php' ) ){
     	echo '<div class="updated fade"><p>'.
@@ -214,9 +232,9 @@ function cforms_scripts() {
 	### global settings
 	$request_uri = get_request_uri();
 
-    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.3.2") ) === -1 ){
+    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.4.2") ) === -1 ){
 		wp_deregister_script('jquery');
-	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.3.2');
+	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.4.2');
     	wp_enqueue_script('jquery');
     }
 
@@ -311,7 +329,7 @@ function cforms_footer() {
 	global $localversion;
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
 		<em>
-			<?php echo sprintf(__('For more information and support, visit the %s support forum %s. ', 'cforms'),'<strong>cforms</strong> <a href="http://www.deliciousdays.com/cforms-forum/" title="cforms support forum">','</a>') ?>
+			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/" title="cforms support forum">','</a>') ?>
 			<?php _e('Translation provided by Oliver Seidel, for updates <a href="http://deliciousdays.com/cforms-plugin">check here.</a>', 'cforms') ?>
 		</em>
 	</p>
@@ -338,7 +356,6 @@ function check_erased() {
 }
 
 
-
 ### get_magic_quotes_gpc() workaround
 if ( !function_exists(get_magic_quotes_gpc) ) {
 	function get_magic_quotes_gpc(){
@@ -346,6 +363,8 @@ if ( !function_exists(get_magic_quotes_gpc) ) {
 	}
 }
 function magic($v){
-	return get_magic_quotes_gpc()?$v:addslashes($v);
+  global $wp_version;
+  $vercomp = (version_compare(strval($wp_version), strval('2.9'), '>=') == 1);
+	return ( get_magic_quotes_gpc() || $vercomp ) ? $v : addslashes($v);
 }
 ?>

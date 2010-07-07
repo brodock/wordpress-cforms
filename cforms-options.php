@@ -404,8 +404,8 @@ abspath_check();
 
     <?php if( $fileupload) : ?>
 	<fieldset id="fileupload" class="cformsoptions">
-			<div class="cflegend" id="p0" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('File Upload Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('File Upload Settings', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o0">
@@ -459,8 +459,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="anchormessage">
-			<div class="cflegend" id="p1" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Messages, Text and Button Label', 'cforms')?>
+			<div class="cflegend op-closed" id="p1" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Messages, Text and Button Label', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o1">
@@ -539,8 +539,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="anchoremail">
-			<div class="cflegend" id="p2" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Core Form Admin / Email Options', 'cforms')?>
+			<div class="cflegend op-closed" id="p2" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Core Form Admin / Email Options', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o2">
@@ -552,9 +552,16 @@ abspath_check();
                 <tr class="ob">
                     <td class="obL"><strong><?php _e('Core options', 'cforms') ?></strong></td>
 					<td class="obR">
-						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php echo sprintf(__('%sDo not reset%s input fields after submission', 'cforms'),'<strong>','</strong>'); ?></label>
+						<input class="allchk" type="checkbox" id="cforms_formaction" name="cforms_formaction" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_formaction']) echo "checked=\"checked\""; ?>/><label for="cforms_formaction"><?php echo sprintf(__('Disable %s multipart/form-data enctype %s, e.g. to enable salesforce.com', 'cforms'),'<strong>','</strong>'); ?></label>
 		 			</td>
                 </tr>
+
+				<tr class="ob space10">
+					<td class="obL"></td>
+					<td class="obR">
+						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php echo sprintf(__('%sDo not reset%s input fields after submission', 'cforms'),'<strong>','</strong>'); ?></label>
+		 			</td>
+	  			</tr>
 
 				<?php if( $cformsSettings['global']['cforms_showdashboard'] == '1' ) : ?>
 					<tr class="ob space10">
@@ -720,8 +727,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="emailoptions">
-			<div class="cflegend" id="p3" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Admin Email Message Options', 'cforms')?>
+			<div class="cflegend op-closed" id="p3" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Admin Email Message Options', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o3">
@@ -810,8 +817,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions <?php if( !$ccboxused ) echo "hidden"; ?>" id="cc">
-			<div class="cflegend" id="p4" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('CC Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p4" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('CC Settings', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o4">
@@ -829,8 +836,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="autoconf">
-			<div class="cflegend" id="p5" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Auto Confirmation', 'cforms')?>
+			<div class="cflegend op-closed" id="p5" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Auto Confirmation', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o5">
@@ -895,8 +902,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="multipage">
-			<div class="cflegend" id="p29" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Multi-Part / Multi-Page Forms', 'cforms')?>
+			<div class="cflegend op-closed" id="p29" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Multi-Part / Multi-Page Forms', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o29">
@@ -965,8 +972,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="tellafriend">
-			<div class="cflegend" id="p6" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Tell-A-Friend Form Support', 'cforms')?>
+			<div class="cflegend op-closed" id="p6" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Tell-A-Friend Form Support', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o6">
@@ -1014,8 +1021,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="commentrep">
-			<div class="cflegend" id="p7" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('WP Comment Feature', 'cforms')?>
+			<div class="cflegend op-closed" id="p7" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o7">
@@ -1048,8 +1055,8 @@ abspath_check();
 
 
 		<fieldset class="cformsoptions" id="readnotify">
-			<div class="cflegend" id="p8" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('3rd Party Read-Notification Support', 'cforms')?>
+			<div class="cflegend op-closed" id="p8" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('3rd Party Read-Notification Support', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o8">
@@ -1065,7 +1072,7 @@ abspath_check();
 		</fieldset>
 
 	    <div class="cf_actions" id="cf_actions">
-	        <div class="cflegend" id="p31"><div class="blindminus"></div><p><?php _e('Admin Actions','cforms'); ?></p></div>
+	        <div class="cflegend op-closed" id="p31"><div class="blindplus"></div><p><?php _e('Admin Actions','cforms'); ?></p></div>
 	        <div class="cf-content" id="o31">
                 <p class="m1">
                 <input class="allbuttons addbutton" type="submit" name="addbutton" title="<?php _e('adds a new form with default values', 'cforms'); ?>" value="<?php _e('Add new form', 'cforms'); ?>"/><br />

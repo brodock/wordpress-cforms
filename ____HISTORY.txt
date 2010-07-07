@@ -26,6 +26,37 @@
  Version History:
  =====================================================================================
 
+WHAT's NEW in cformsII - v11.5
+*) WP 3.0 compliance
+
+WHAT's NEW in cformsII - v11.4
+*) feature:  added Belarusian (be_BY) by Marcis G.
+*) feature:  NEW CORE OPTION : disables enctype, to support e.g. salesforce.com
+*) feature:  enhanced JS regular expression validation, supporting multi-line searches/
+			 prevention from using spam words, e.g. ^(?:(?!spam-word|seo).)*$
+*) feature:  on UPLOAD forms, submit button gets disabled to prevent false resubmission
+*) bugfix:   fixed double quote "" issue in XML tracking downloads
+*) bugfix:   fixed loading issues of the TRACKING page
+*) bugfix:   fixed deletion of ATTACHMENTS on server when deleting tracked submission
+*) bugfix:   form names for recent submissions show accuratly now on WP DASHBOARD
+*) security: added security around "remove/delete plugin" function
+
+
+WHAT's NEW in cformsII - v11.3
+*) bugfix:  MULTIPLE RECIPIENTS: fixed issue with 'required' & non-valid entries
+
+WHAT's NEW in cformsII - v11.2
+
+*) FIXING WP 2.9 idiotic  $_REQUEST / get_magic_quotes_gpc()  override in wp-settings.php
+
+*) feature: cforms headers: can now also be *excluded* on certain pages (Global Settings))
+*) bugfix:  file upload: fixed renaming of multiple attachments (multiple '-' issue)
+*) bugfix:  file upload: fixed missing default upload path (absolute path))
+*) bugfix:  TAF: fixed *TAF show/noshow* for TAF forms in the sidebar and in a post/page
+*) bugfix:  auto confirmation settings: fixes saving of "subject" text
+*) bugfix:  drop down / select box: fixes "selection of last item" issue after form reload
+*) other:   "don't clear on reset" auto. turned off when enabling multi part/page forms
+*) other:   improved page load and UI experience, fixed some UI text areas
 
 WHAT's NEW in cformsII - v11.1
 
